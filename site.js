@@ -62,6 +62,10 @@ $('#videos').innerHTML = SITE.videos.map(v => `
 		<video src="media/videos/${v.id}.mp4" poster="media/videos/${v.id}.jpg" controls preload="none" playsinline></video>
 		<figcaption>${esc(v.title)}</figcaption>
 	</figure>`).join('');
+// each video's first play counts as an event in GoatCounter
+for (const v of document.querySelectorAll('#videos video')) {
+	v.addEventListener('play', () => window.goatcounter && window.goatcounter.count({ path: 'play-' + v.src.split('/').pop().replace('.mp4', ''), event: true }), { once: true });
+}
 
 $('#notes').innerHTML = SITE.patchNotes.map((n, i) => `
 	<article class="note${i === 0 ? ' latest' : ''}">
