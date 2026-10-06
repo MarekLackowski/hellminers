@@ -23,6 +23,10 @@ const SITE = {
 		// the next version, filled in as it is built (Marek, 2026-10-06): new changes go into this entry until 0.2.0 is out
 		{ date: '2026-10-06', title: 'Version 0.2.0 (in progress)', items: [
 			'The Shrieker and the Dragonroach now fly level instead of leaning into a constant turn.',
+			'New stratagems: MD-I4 Incendiary Mines, MD-17 Anti-Tank Mines and MD-8 Gas Mines.',
+			'All mines have new models and go off as soon as something touches them.',
+			'A stratagem beacon stuck to an enemy now moves smoothly with it.',
+			'Fixed flickering textures on Terminids.',
 		] },
 		{ date: '2026-10-05', title: 'One True Flag', items: [
 			'New stratagem: CQC-1 One True Flag. Carry it on your back, hold it, or plant it in the ground.',
