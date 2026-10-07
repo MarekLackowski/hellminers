@@ -26,6 +26,10 @@ Written the way Helldivers 2, Minecraft, Terraria, Deep Rock Galactic and Modrin
 - Don't explain why something changed unless a player needs it to understand the line.
 - Never mark an entry "in progress".
 
+## Versions
+
+The version being built is one patch-note entry with `draft: true`: changes are added to it as they are made, and the site does not show it. `node release.js` publishes it: it drops the draft mark, dates the entry today, sets the site's version to it and bumps the cache stamp. Then commit and push.
+
 ## Caching
 
 `index.html` loads `style.css` and `site.js` with a `?v=` stamp. Change the stamp whenever either file changes, or browsers keep the old copy.

@@ -23,7 +23,8 @@ const SITE = {
 	// newest first. Written the way games and mods write them (see README): sections, one short line per change,
 	// 'Name: what changed', numbers as 'from X to Y', fixes as 'Fixed ...'. No selling, no explaining.
 	patchNotes: [
-		{ date: '2026-10-07', title: 'Version 0.3.0', sections: [
+		// draft: true: the version being built, collected as we go and not shown; node release.js publishes it.
+		{ draft: true, date: '', title: 'Version 0.3.0', sections: [
 			{ title: 'New enemies', items: [
 				'Devastator',
 				'Heavy Devastator',
@@ -130,7 +131,7 @@ for (const v of document.querySelectorAll('#videos video')) {
 	v.addEventListener('play', () => window.goatcounter && window.goatcounter.count({ path: 'play-' + v.src.split('/').pop().replace('.mp4', ''), event: true }), { once: true });
 }
 
-$('#notes').innerHTML = SITE.patchNotes.map((n, i) => `
+$('#notes').innerHTML = SITE.patchNotes.filter(n => !n.draft).map((n, i) => `
 	<article class="note${i === 0 ? ' latest' : ''}">
 		<header><time>${n.date}</time><h3>${esc(n.title)}</h3>${i === 0 ? '<span class="tag">latest</span>' : ''}</header>
 		${n.sections.map(s => `<h4>${esc(s.title)}</h4><ul>${s.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul>`).join('')}
