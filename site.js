@@ -19,38 +19,65 @@ const SITE = {
 		{ id: 'ep02', title: 'Eagle Airstrike' },
 		{ id: 'ep01', title: 'I added Helldivers 2 to Minecraft' },
 	],
-	// newest first
+	// newest first. Written the way games and mods write them (see README): sections, one short line per change,
+	// 'Name: what changed', numbers as 'from X to Y', fixes as 'Fixed ...'. No selling, no explaining.
 	patchNotes: [
-		{ date: '2026-10-07', title: 'Version 0.2.0', items: [
-			'The Shrieker and the Dragonroach now fly level instead of leaning into a constant turn.',
-			'New stratagems: MD-I4 Incendiary Mines, MD-17 Anti-Tank Mines and MD-8 Gas Mines.',
-			'All mines have new models and go off as soon as something touches them.',
-			'A stratagem beacon stuck to an enemy now moves smoothly with it.',
-			'Fixed flickering textures on Terminids.',
-			'New stratagem: FX-12 Shield Generator Relay. A gold dome 15 m across stops every shot, airstrike and blast from outside and lights up where it is hit. Terminids go for it first.',
-			'New stratagem: E/AT-12 Anti-Tank Emplacement.',
-			'New stratagem: E/GL-21 Grenadier Battlement. Its steel wall stops fire, and its grenades fly like the game’s: they arm after 7 m and skip off at shallow angles.',
-			'All three come with their sounds from the game.',
-			'Mounted guns now hit where the crosshair is, and the HMG Emplacement reaches 300 m instead of 40 m.',
-			'Grenade launchers and the AT-12 have their own smaller explosions instead of the bomb effect.',
+		{ date: '2026-10-07', title: 'Version 0.2.0', sections: [
+			{ title: 'New stratagems', items: [
+				'MD-I4 Incendiary Mines',
+				'MD-17 Anti-Tank Mines',
+				'MD-8 Gas Mines',
+				'FX-12 Shield Generator Relay',
+				'E/AT-12 Anti-Tank Emplacement',
+				'E/GL-21 Grenadier Battlement',
+			] },
+			{ title: 'Changes', items: [
+				'Mines: new models.',
+				'Mines now go off on contact.',
+				'HMG Emplacement: range increased from 40 m to 300 m.',
+				'Emplacements now fire at the crosshair.',
+				'Grenade launcher and AT-12 rounds have their own explosion effect and break fewer blocks.',
+				'Stratagem beacons stuck to an enemy now follow it smoothly.',
+			] },
+			{ title: 'Fixes', items: [
+				'Fixed Shrieker and Dragonroach flying tilted.',
+				'Fixed flickering textures on Terminids.',
+			] },
 		] },
-		{ date: '2026-10-05', title: 'One True Flag', items: [
-			'New stratagem: CQC-1 One True Flag. Carry it on your back, hold it, or plant it in the ground.',
-			'The flag works as a melee weapon with a forward thrust.',
-			'Terminids and Automatons go for whoever carries the flag.',
-			'Support weapons are now held the same way as the Liberator.',
+		{ date: '2026-10-05', title: 'One True Flag', sections: [
+			{ title: 'New stratagems', items: [
+				'CQC-1 One True Flag. Can be worn on the back, held or planted in the ground.',
+			] },
+			{ title: 'Changes', items: [
+				'Terminids and Automatons now target whoever carries the flag.',
+				'Support weapons now use the same holding pose as the Liberator.',
+			] },
 		] },
-		{ date: '2026-10-01', title: 'Flame, gas, arc and laser', items: [
-			'FLAM-40 Flamethrower, TX-41 Sterilizer, ARC-3 Arc Thrower and LAS-98 Laser Cannon.',
-			'Fire weapons leave burning ground and gas weapons leave a cloud, like in the game.',
+		{ date: '2026-10-01', title: 'Flame, gas, arc and laser', sections: [
+			{ title: 'New stratagems', items: [
+				'FLAM-40 Flamethrower',
+				'TX-41 Sterilizer',
+				'ARC-3 Arc Thrower',
+				'LAS-98 Laser Cannon',
+			] },
+			{ title: 'Changes', items: [
+				'Fire weapons now leave burning ground.',
+				'Gas weapons now leave a gas cloud.',
+			] },
 		] },
-		{ date: '2026-09-25', title: 'Enemies rebuilt from the game', items: [
-			'All Terminids and Automatons rebuilt from the game files, at the same size as in Helldivers 2.',
-			'Super Earth objectives: SEAF Artillery, SAM Site and radar, activated the same way as in the game.',
+		{ date: '2026-09-25', title: 'Enemies rebuilt', sections: [
+			{ title: 'Added', items: [
+				'SEAF Artillery, SAM Site and radar station objectives.',
+			] },
+			{ title: 'Changes', items: [
+				'All Terminids and Automatons rebuilt from Helldivers 2 models and animations, at in-game size.',
+			] },
 		] },
-		{ date: '2026-09-15', title: 'Terminid infestation', items: [
-			'A new biome with bug nests, patrols and samples to collect.',
-			'Nest sizes and enemy counts follow the game’s difficulty levels.',
+		{ date: '2026-09-15', title: 'Terminid infestation', sections: [
+			{ title: 'Added', items: [
+				'Terminid infestation biome with bug nests, patrols and samples.',
+				'Nest size and enemy count depend on difficulty.',
+			] },
 		] },
 	],
 };
@@ -84,7 +111,7 @@ for (const v of document.querySelectorAll('#videos video')) {
 $('#notes').innerHTML = SITE.patchNotes.map((n, i) => `
 	<article class="note${i === 0 ? ' latest' : ''}">
 		<header><time>${n.date}</time><h3>${esc(n.title)}</h3>${i === 0 ? '<span class="tag">latest</span>' : ''}</header>
-		<ul>${n.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+		${n.sections.map(s => `<h4>${esc(s.title)}</h4><ul>${s.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul>`).join('')}
 	</article>`).join('');
 
 // the stratagem wall: every icon the mod has, its name on hover

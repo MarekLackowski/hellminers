@@ -71,7 +71,8 @@ figcaption { font-family: Anton, sans-serif; text-transform: uppercase; color: v
 .note time { color: var(--dim); font-size: 14px; }
 .note h3 { margin: 0; font-size: 24px; }
 .tag { background: var(--yellow); color: #111; font: 400 13px Anton, sans-serif; text-transform: uppercase; padding: 1px 8px; }
-.note ul { margin: 10px 0 0; padding-left: 20px; color: var(--dim); }
+.note h4 { margin: 14px 0 0; font: 400 15px Anton, sans-serif; text-transform: uppercase; letter-spacing: .04em; color: var(--yellow); }
+.note ul { margin: 6px 0 0; padding-left: 20px; color: var(--dim); }
 
 #support p { max-width: 720px; color: var(--dim); }
 footer { border-top: 1px solid var(--line); text-align: center; padding: 32px 24px; color: var(--dim); font-size: 14px; }
