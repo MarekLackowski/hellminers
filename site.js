@@ -22,6 +22,27 @@ const SITE = {
 	// newest first. Written the way games and mods write them (see README): sections, one short line per change,
 	// 'Name: what changed', numbers as 'from X to Y', fixes as 'Fixed ...'. No selling, no explaining.
 	patchNotes: [
+		{ date: '2026-10-07', title: 'Version 0.3.0', sections: [
+			{ title: 'New enemies', items: [
+				'Devastator',
+				'Heavy Devastator',
+				'Rocket Devastator',
+				'Berserker',
+			] },
+			{ title: 'Changes', items: [
+				'Automatons now fire while moving. Some hold position, some close in, some circle the target.',
+				'Automatons now aim their weapons up and down at the target.',
+				'Automatons now back away at half their walking speed.',
+				'Automaton hit zones now follow the model closely. Head shots work.',
+				'Automatons now have red eyes.',
+				'Enemies are no longer knocked back when shot.',
+				'A head shot kill leaves the Automaton’s head smoking and sparking.',
+			] },
+			{ title: 'Fixes', items: [
+				'Fixed flickering textures on Automatons.',
+				'Fixed Automaton shots not coming from their weapons.',
+			] },
+		] },
 		{ date: '2026-10-07', title: 'Version 0.2.0', sections: [
 			{ title: 'New stratagems', items: [
 				'MD-I4 Incendiary Mines',
