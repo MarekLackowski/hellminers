@@ -1,7 +1,7 @@
 // Everything Marek edits lives in SITE: the version, the patch notes, the links and the videos.
 // Leave a link as '' and its button shows "coming soon" instead.
 const SITE = {
-	version: '0.1.0',
+	version: '0.2.0',
 	stage: 'Pre-alpha',
 	minecraft: 'Java Edition 26.2 (Fabric)',
 	links: {
@@ -12,6 +12,7 @@ const SITE = {
 	},
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep06', title: 'Terminids, part 2' },
 		{ id: 'ep05', title: 'Terminids, part 1' },
 		{ id: 'ep04', title: 'The Helldiver armour' },
 		{ id: 'ep03', title: 'Machine Gun Sentry' },
@@ -20,13 +21,18 @@ const SITE = {
 	],
 	// newest first
 	patchNotes: [
-		// the next version, filled in as it is built (Marek, 2026-10-06): new changes go into this entry until 0.2.0 is out
-		{ date: '2026-10-06', title: 'Version 0.2.0 (in progress)', items: [
+		{ date: '2026-10-07', title: 'Version 0.2.0', items: [
 			'The Shrieker and the Dragonroach now fly level instead of leaning into a constant turn.',
 			'New stratagems: MD-I4 Incendiary Mines, MD-17 Anti-Tank Mines and MD-8 Gas Mines.',
 			'All mines have new models and go off as soon as something touches them.',
 			'A stratagem beacon stuck to an enemy now moves smoothly with it.',
 			'Fixed flickering textures on Terminids.',
+			'New stratagem: FX-12 Shield Generator Relay. A gold dome 15 m across stops every shot, airstrike and blast from outside and lights up where it is hit. Terminids go for it first.',
+			'New stratagem: E/AT-12 Anti-Tank Emplacement.',
+			'New stratagem: E/GL-21 Grenadier Battlement. Its steel wall stops fire, and its grenades fly like the game’s: they arm after 7 m and skip off at shallow angles.',
+			'All three come with their sounds from the game.',
+			'Mounted guns now hit where the crosshair is, and the HMG Emplacement reaches 300 m instead of 40 m.',
+			'Grenade launchers and the AT-12 have their own smaller explosions instead of the bomb effect.',
 		] },
 		{ date: '2026-10-05', title: 'One True Flag', items: [
 			'New stratagem: CQC-1 One True Flag. Carry it on your back, hold it, or plant it in the ground.',
@@ -91,6 +97,7 @@ const ICONS = ['eagle_airstrike', 'orbital_precision_strike', 'resupply', 'machi
 	'anti_personnel_minefield', 'shield_generator_pack', 'supply_pack', 'warp_pack', 'hover_pack', 'jump_pack',
 	'ballistic_shield', 'directional_shield', 'hellbomb_pack', 'guard_dog', 'guard_dog_rover', 'guard_dog_k9',
 	'guard_dog_hot_dog', 'guard_dog_breath', 'machine_gun', 'flamethrower', 'sterilizer', 'arc_thrower', 'laser_cannon',
-	'one_true_flag', 'seaf_artillery'];
+	'one_true_flag', 'seaf_artillery', 'incendiary_mines', 'anti_tank_mines', 'gas_mines', 'shield_generator_relay',
+	'anti_tank_emplacement', 'grenadier_battlement'];
 $('#icons').innerHTML = ICONS.map(i => `<img src="media/icons/${i}.png" alt="${i.replace(/_/g, ' ')}" title="${i.replace(/_/g, ' ')}" loading="lazy">`).join('');
 $('#icon-count').textContent = ICONS.length;
