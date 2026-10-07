@@ -94,3 +94,16 @@ body { overflow-x: hidden; }
 .btn > span { display: flex; flex-direction: column; }
 .ico { width: 26px; height: 26px; flex: none; fill: currentColor; }
 .note-small { font-size: 14px; margin-top: 14px; }
+
+/* the faction heading with its emblem */
+h2.faction { display: flex; align-items: center; gap: 12px; }
+h2.faction img { width: 40px; height: 40px; flex: none; }
+/* bug photos open full size */
+.zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.zoom img { display: block; width: 100%; height: auto; transition: transform .15s; }
+.zoom:hover img, .zoom:focus-visible img { transform: scale(1.03); }
+.zoom:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+#lightbox { padding: 0; border: 1px solid var(--yellow); background: var(--panel); max-width: min(92vw, 1000px); max-height: 92vh; }
+#lightbox::backdrop { background: rgba(0, 0, 0, .8); }
+#lightbox img { display: block; width: 100%; height: auto; max-height: 92vh; object-fit: contain; }
+#lightbox .close { position: absolute; top: 6px; right: 6px; width: 40px; height: 40px; border: 0; background: rgba(0, 0, 0, .6); color: #fff; font-size: 28px; line-height: 1; cursor: pointer; }

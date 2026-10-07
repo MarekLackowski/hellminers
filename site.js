@@ -150,3 +150,13 @@ const ICONS = ['eagle_airstrike', 'orbital_precision_strike', 'resupply', 'machi
 	'anti_tank_emplacement', 'grenadier_battlement'];
 $('#icons').innerHTML = ICONS.map(i => `<img src="media/icons/${i}.png" alt="${i.replace(/_/g, ' ')}" title="${i.replace(/_/g, ' ')}" loading="lazy">`).join('');
 $('#icon-count').textContent = ICONS.length;
+
+// the bug photos: a click opens the full-size one; a click anywhere, Esc or the cross closes it
+const box = document.getElementById('lightbox');
+if (box) {
+	const big = box.querySelector('img');
+	for (const b of document.querySelectorAll('.zoom')) {
+		b.addEventListener('click', () => { big.src = b.dataset.big; big.alt = b.querySelector('img').alt; box.showModal(); });
+	}
+	box.addEventListener('click', () => box.close());
+}

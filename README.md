@@ -26,6 +26,10 @@ Written the way Helldivers 2, Minecraft, Terraria, Deep Rock Galactic and Modrin
 - Don't explain why something changed unless a player needs it to understand the line.
 - Never mark an entry "in progress".
 
+## Caching
+
+`index.html` loads `style.css` and `site.js` with a `?v=` stamp. Change the stamp whenever either file changes, or browsers keep the old copy.
+
 ## Publishing
 
 This folder is its own git repository: https://github.com/MarekLackowski/hellminers. GitHub Pages serves `main` from the root at https://mareklackowski.github.io/hellminers/. Commit and run `git push`, and the site updates within a minute or two.
