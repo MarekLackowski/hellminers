@@ -12,6 +12,7 @@ const SITE = {
 	},
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep08', title: 'Minefields' },
 		{ id: 'ep07', title: 'Terminids, part 3' },
 		{ id: 'ep06', title: 'Terminids, part 2' },
 		{ id: 'ep05', title: 'Terminids, part 1' },
