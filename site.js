@@ -12,6 +12,8 @@ const SITE = {
 	},
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep10', title: 'Eagle 500kg Bomb' },
+		{ id: 'ep09', title: 'Bug Nests' },
 		{ id: 'ep08', title: 'Minefields' },
 		{ id: 'ep07', title: 'Terminids, part 3' },
 		{ id: 'ep06', title: 'Terminids, part 2' },
