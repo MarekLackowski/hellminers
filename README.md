@@ -7,7 +7,8 @@ A static page (index.html, style.css, site.js, media/) for GitHub Pages.
 Everything that changes lives in the `SITE` block at the top of `site.js`:
 
 - `version` and `stage`
-- `links`: YouTube, TikTok and Patreon. An empty link shows "coming soon".
+- `links`: YouTube, TikTok, Ko-fi and Patreon. An empty link shows "coming soon".
+- `supporters`: patrons' names, added by hand from Patreon. `superCitizens` (the top tier) get their own yellow row; everyone else goes in `others`.
 - `videos`: each one is `media/videos/<id>.mp4` with `<id>.jpg` as its poster.
 - `patchNotes`: newest first. Each entry has `sections` (`New stratagems`, `Added`, `Changes`, `Fixes`), each a list of lines.
 

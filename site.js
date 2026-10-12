@@ -1,15 +1,17 @@
 // Everything Marek edits lives in SITE: the version, the patch notes, the links and the videos.
 // Leave a link as '' and its button shows "coming soon" instead.
 const SITE = {
-	version: '0.2.0',
+	version: '0.3.0',
 	stage: 'Pre-alpha',
 	minecraft: 'Java Edition 26.2 (Fabric)',
 	links: {
 		youtube: 'https://www.youtube.com/@GoDu_v2',
 		tiktok: 'https://www.tiktok.com/@godu_clips',
 		kofi: 'https://ko-fi.com/mareklackowski',
-		patreon: '',
+		patreon: 'https://www.patreon.com/GoDuuu',
 	},
+	// Patreon supporters, added by hand: superCitizens get their own row at the top of the list
+	supporters: { superCitizens: [], others: [] },
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
 		{ id: 'ep11', title: 'Spore Spewer' },
@@ -27,8 +29,7 @@ const SITE = {
 	// newest first. Written the way games and mods write them (see README): sections, one short line per change,
 	// 'Name: what changed', numbers as 'from X to Y', fixes as 'Fixed ...'. No selling, no explaining.
 	patchNotes: [
-		// draft: true: the version being built, collected as we go and not shown; node release.js publishes it.
-		{ draft: true, date: '', title: 'Version 0.3.0', sections: [
+		{ date: '2026-10-12', title: 'Version 0.3.0', sections: [
 			{ title: 'New enemies', items: [
 				'Devastator',
 				'Heavy Devastator',
@@ -45,6 +46,7 @@ const SITE = {
 				'A head shot kill leaves the Automaton’s head smoking and sparking.',
 			] },
 			{ title: 'Fixes', items: [
+				'Fixed Shriekers getting stuck circling their tower.',
 				'Fixed flickering textures on Automatons.',
 				'Fixed Automaton shots not coming from their weapons.',
 			] },
@@ -141,6 +143,13 @@ $('#notes').innerHTML = SITE.patchNotes.filter(n => !n.draft).map((n, i) => `
 		<summary><time>${n.date}</time><h3>${esc(n.title)}</h3>${i === 0 ? '<span class="tag">latest</span>' : ''}</summary>
 		${n.sections.map(s => `<h4>${esc(s.title)}</h4><ul>${s.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul>`).join('')}
 	</details>`).join('');
+
+// supporters: Super Citizens first, then everyone else; an empty list invites the first one
+const sup = SITE.supporters;
+$('#supporters').innerHTML = sup.superCitizens.length + sup.others.length === 0
+	? '<p class="dim">No supporters yet. Be the first!</p>'
+	: (sup.superCitizens.length ? `<h3>Super Citizens</h3><ul class="names super">${sup.superCitizens.map(n => `<li>${esc(n)}</li>`).join('')}</ul>` : '') +
+	  (sup.others.length ? `<h3>Helldivers</h3><ul class="names">${sup.others.map(n => `<li>${esc(n)}</li>`).join('')}</ul>` : '');
 
 // the stratagem wall: every icon the mod has, its name on hover
 const ICONS = ['eagle_airstrike', 'orbital_precision_strike', 'resupply', 'machine_gun_sentry', 'expendable_anti_tank',

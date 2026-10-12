@@ -175,3 +175,10 @@ details.note > summary h3 { flex: 1; min-width: 0; }
 	.bugs { grid-template-columns: repeat(3, 1fr); gap: 8px; }
 	.bugs figcaption { font-size: 12px; padding: 4px 6px; line-height: 1.2; }
 }
+
+/* supporters: names in a wrapping row, Super Citizens in yellow */
+#supporters h3 { font-size: 20px; margin: 18px 0 8px; }
+#supporters .dim { color: var(--dim); }
+.names { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.names li { background: var(--panel); border: 1px solid var(--line); padding: 4px 12px; }
+.names.super li { border-color: var(--yellow); color: var(--yellow); font-family: Anton, sans-serif; text-transform: uppercase; }
