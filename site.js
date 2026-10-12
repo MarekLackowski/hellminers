@@ -9,6 +9,7 @@ const SITE = {
 		tiktok: 'https://www.tiktok.com/@godu_clips',
 		kofi: 'https://ko-fi.com/mareklackowski',
 		patreon: 'https://www.patreon.com/cw/GoDuuu',
+		beta: 'https://www.patreon.com/posts/hellminers-beta-172140879', // the free beta post
 	},
 	// Patreon supporters, added by hand: superCitizens get their own row at the top of the list
 	supporters: { superCitizens: [], others: [] },
