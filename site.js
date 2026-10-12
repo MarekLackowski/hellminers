@@ -8,7 +8,7 @@ const SITE = {
 		youtube: 'https://www.youtube.com/@GoDu_v2',
 		tiktok: 'https://www.tiktok.com/@godu_clips',
 		kofi: 'https://ko-fi.com/mareklackowski',
-		patreon: 'https://www.patreon.com/GoDuuu',
+		patreon: 'https://www.patreon.com/cw/GoDuuu',
 	},
 	// Patreon supporters, added by hand: superCitizens get their own row at the top of the list
 	supporters: { superCitizens: [], others: [] },
