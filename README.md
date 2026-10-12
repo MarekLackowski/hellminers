@@ -37,3 +37,15 @@ The version being built is one patch-note entry with `draft: true`: changes are 
 ## Publishing
 
 This folder is its own git repository: https://github.com/MarekLackowski/hellminers. GitHub Pages serves `main` from the root at https://mareklackowski.github.io/hellminers/. Commit and run `git push`, and the site updates within a minute or two.
+
+## Phones first
+
+About 60% of visitors are on phones. Check every change at 390 px wide before publishing:
+
+- The YouTube / TikTok buttons must be on the first screen.
+- Nothing may push the page sideways.
+- Tap targets are at least 44 px.
+- Every `<img>` and `<video>` has `width` and `height`, so the page doesn't jump while loading.
+- Big pictures get a small copy for phones: `hero-540.jpg` next to `hero.jpg`.
+- `media/og.jpg` (1200×630) is the picture shown when the link is shared. Its URL in `index.html` is absolute.
+- Site videos: 540×960, about 600 kb/s, `-movflags +faststart`. Posters are the episode thumbnail at 540×960.

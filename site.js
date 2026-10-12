@@ -12,6 +12,7 @@ const SITE = {
 	},
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep11', title: 'Spore Spewer' },
 		{ id: 'ep10', title: 'Eagle 500kg Bomb' },
 		{ id: 'ep09', title: 'Bug Nests' },
 		{ id: 'ep08', title: 'Minefields' },
@@ -126,7 +127,7 @@ for (const [key, url] of Object.entries(SITE.links)) {
 
 $('#videos').innerHTML = SITE.videos.map(v => `
 	<figure class="video">
-		<video src="media/videos/${v.id}.mp4" poster="media/videos/${v.id}.jpg" controls preload="none" playsinline></video>
+		<video src="media/videos/${v.id}.mp4" poster="media/videos/${v.id}.jpg" width="540" height="960" controls preload="none" playsinline aria-label="${esc(v.title)}"></video>
 		<figcaption>${esc(v.title)}</figcaption>
 	</figure>`).join('');
 // each video's first play counts as an event in GoatCounter
@@ -134,11 +135,12 @@ for (const v of document.querySelectorAll('#videos video')) {
 	v.addEventListener('play', () => window.goatcounter && window.goatcounter.count({ path: 'play-' + v.src.split('/').pop().replace('.mp4', ''), event: true }), { once: true });
 }
 
+// the latest entry open, the older ones folded (most visitors are on phones: no long scroll past old notes)
 $('#notes').innerHTML = SITE.patchNotes.filter(n => !n.draft).map((n, i) => `
-	<article class="note${i === 0 ? ' latest' : ''}">
-		<header><time>${n.date}</time><h3>${esc(n.title)}</h3>${i === 0 ? '<span class="tag">latest</span>' : ''}</header>
+	<details class="note${i === 0 ? ' latest' : ''}"${i === 0 ? ' open' : ''}>
+		<summary><time>${n.date}</time><h3>${esc(n.title)}</h3>${i === 0 ? '<span class="tag">latest</span>' : ''}</summary>
 		${n.sections.map(s => `<h4>${esc(s.title)}</h4><ul>${s.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul>`).join('')}
-	</article>`).join('');
+	</details>`).join('');
 
 // the stratagem wall: every icon the mod has, its name on hover
 const ICONS = ['eagle_airstrike', 'orbital_precision_strike', 'resupply', 'machine_gun_sentry', 'expendable_anti_tank',
@@ -152,7 +154,7 @@ const ICONS = ['eagle_airstrike', 'orbital_precision_strike', 'resupply', 'machi
 	'guard_dog_hot_dog', 'guard_dog_breath', 'machine_gun', 'flamethrower', 'sterilizer', 'arc_thrower', 'laser_cannon',
 	'one_true_flag', 'seaf_artillery', 'incendiary_mines', 'anti_tank_mines', 'gas_mines', 'shield_generator_relay',
 	'anti_tank_emplacement', 'grenadier_battlement'];
-$('#icons').innerHTML = ICONS.map(i => `<img src="media/icons/${i}.png" alt="${i.replace(/_/g, ' ')}" title="${i.replace(/_/g, ' ')}" loading="lazy">`).join('');
+$('#icons').innerHTML = ICONS.map(i => `<img src="media/icons/${i}.png" width="64" height="64" alt="${i.replace(/_/g, ' ')}" title="${i.replace(/_/g, ' ')}" loading="lazy">`).join('');
 $('#icon-count').textContent = ICONS.length;
 
 // the bug photos: a click opens the full-size one; a click anywhere, Esc or the cross closes it
