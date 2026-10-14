@@ -15,6 +15,7 @@ const SITE = {
 	supporters: { superCitizens: [], others: [] },
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep14', title: 'Orbital Railcannon Strike' },
 		{ id: 'ep13', title: 'Resupply' },
 		{ id: 'ep12', title: 'Shrieker Nest' },
 		{ id: 'ep11', title: 'Spore Spewer' },
