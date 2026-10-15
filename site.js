@@ -2,7 +2,7 @@
 // Leave a link as '' and its button shows "coming soon" instead.
 const SITE = {
 	version: '0.3.0',
-	stage: 'Pre-alpha',
+	stage: 'Beta',
 	minecraft: 'Java Edition 26.2 (Fabric)',
 	links: {
 		youtube: 'https://www.youtube.com/@GoDu_v2',
@@ -131,17 +131,102 @@ for (const [key, url] of Object.entries(SITE.links)) {
 	}
 }
 
-$('#videos').innerHTML = SITE.videos.map(v => `
-	<figure class="video">
-		<video src="media/videos/${v.id}.mp4" poster="media/videos/${v.id}.jpg" width="540" height="960" controls preload="none" playsinline aria-label="${esc(v.title)}"></video>
-		<figcaption>${esc(v.title)}</figcaption>
-	</figure>`).join('');
-// each video's first play counts as an event in GoatCounter
-for (const v of document.querySelectorAll('#videos video')) {
-	v.addEventListener('play', () => window.goatcounter && window.goatcounter.count({ path: 'play-' + v.src.split('/').pop().replace('.mp4', ''), event: true }), { once: true });
+// the videos: poster cards (a muted preview on hover) that open a vertical player with prev/next, swipe and keys
+const fmt = t => Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+$('#videos').innerHTML = SITE.videos.map((v, i) => `
+	<button type="button" class="video" data-i="${i}" aria-label="Play: ${esc(v.title)}">
+		<span class="thumb"><img src="media/videos/${v.id}.jpg" alt="" width="540" height="960" loading="lazy"><span class="play" aria-hidden="true"></span></span>
+		<span class="vt">${esc(v.title)}</span>
+	</button>`).join('');
+const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+for (const card of document.querySelectorAll('#videos .video')) {
+	const v = SITE.videos[card.dataset.i], thumb = card.querySelector('.thumb');
+	card.addEventListener('click', () => openPlayer(+card.dataset.i));
+	if (!fine || still) continue;
+	let prev;
+	card.addEventListener('mouseenter', () => {
+		if (!prev) {
+			prev = document.createElement('video');
+			Object.assign(prev, { src: `media/videos/${v.id}.mp4`, muted: true, loop: true, playsInline: true });
+			prev.className = 'preview';
+			thumb.append(prev);
+		}
+		prev.currentTime = 0;
+		prev.play().catch(() => {});
+	});
+	card.addEventListener('mouseleave', () => prev && prev.pause());
 }
 
-// the latest entry open, the older ones folded (most visitors are on phones: no long scroll past old notes)
+const pl = $('#player'), pv = pl.querySelector('video'), fill = pl.querySelector('.pl-fill'), seek = pl.querySelector('.pl-seek');
+let cur = 0;
+function openPlayer(i) {
+	cur = (i + SITE.videos.length) % SITE.videos.length;
+	const v = SITE.videos[cur];
+	pv.src = `media/videos/${v.id}.mp4`;
+	pv.poster = `media/videos/${v.id}.jpg`;
+	pl.querySelector('.pl-title').textContent = v.title;
+	if (!pl.open) pl.showModal();
+	pv.play().catch(() => {});
+	if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: 'play-' + v.id, event: true });
+}
+const sync = () => {
+	pl.classList.toggle('paused', pv.paused);
+	pl.querySelector('.pl-play').setAttribute('aria-label', pv.paused ? 'Play' : 'Pause');
+};
+pv.addEventListener('play', sync);
+pv.addEventListener('pause', sync);
+pv.addEventListener('timeupdate', () => {
+	fill.style.width = (pv.currentTime / pv.duration * 100 || 0) + '%';
+	pl.querySelector('.pl-time').textContent = fmt(pv.currentTime);
+});
+pv.addEventListener('ended', () => openPlayer(cur + 1));
+const toggle = () => (pv.paused ? pv.play() : pv.pause());
+pv.addEventListener('click', toggle);
+pl.querySelector('.pl-big').addEventListener('click', toggle);
+pl.querySelector('.pl-play').addEventListener('click', toggle);
+pl.querySelector('.pl-mute').addEventListener('click', () => { pv.muted = !pv.muted; pl.classList.toggle('muted', pv.muted); });
+const seekTo = e => { const r = seek.getBoundingClientRect(); pv.currentTime = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * pv.duration; };
+seek.addEventListener('pointerdown', e => { seekTo(e); seek.setPointerCapture(e.pointerId); seek.onpointermove = seekTo; });
+seek.addEventListener('pointerup', () => { seek.onpointermove = null; });
+seek.addEventListener('keydown', e => { if (e.key === 'ArrowRight') pv.currentTime += 2; if (e.key === 'ArrowLeft') pv.currentTime -= 2; });
+pl.querySelector('.prev').addEventListener('click', () => openPlayer(cur - 1));
+pl.querySelector('.next').addEventListener('click', () => openPlayer(cur + 1));
+pl.querySelector('.close').addEventListener('click', () => pl.close());
+pl.addEventListener('click', e => { if (e.target === pl) pl.close(); });
+pl.addEventListener('close', () => pv.pause());
+pl.addEventListener('keydown', e => {
+	if (e.key === 'ArrowDown') openPlayer(cur + 1);
+	if (e.key === 'ArrowUp') openPlayer(cur - 1);
+});
+// swipe up / down between videos on phones, as on TikTok
+let y0 = null;
+pl.addEventListener('touchstart', e => { y0 = e.touches[0].clientY; }, { passive: true });
+pl.addEventListener('touchend', e => {
+	if (y0 === null) return;
+	const d = e.changedTouches[0].clientY - y0;
+	if (Math.abs(d) > 60) openPlayer(cur + (d < 0 ? 1 : -1));
+	y0 = null;
+});
+
+// the hero reel plays only while on screen, and never for reduced motion
+const reel = $('#hero-reel');
+if (reel && !still && 'IntersectionObserver' in window) {
+	new IntersectionObserver(([e]) => (e.isIntersecting ? reel.play().catch(() => {}) : reel.pause())).observe(reel);
+}
+
+// cards and notes rise in as they scroll into view (once; skipped for reduced motion)
+if (!still && 'IntersectionObserver' in window) {
+	const io = new IntersectionObserver(es => es.forEach(e => {
+		if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+	}), { rootMargin: '0px 0px -8% 0px' });
+	document.querySelectorAll('.cards article, .bugs figure, .video, .note').forEach((el, i) => {
+		el.classList.add('rise');
+		el.style.transitionDelay = (i % 6) * 60 + 'ms';
+		io.observe(el);
+	});
+}
+
 $('#notes').innerHTML = SITE.patchNotes.filter(n => !n.draft).map((n, i) => `
 	<details class="note${i === 0 ? ' latest' : ''}"${i === 0 ? ' open' : ''}>
 		<summary><time>${n.date}</time><h3>${esc(n.title)}</h3>${i === 0 ? '<span class="tag">latest</span>' : ''}</summary>

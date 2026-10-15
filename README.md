@@ -50,3 +50,9 @@ About 60% of visitors are on phones. Check every change at 390 px wide before pu
 - Big pictures get a small copy for phones: `hero-540.jpg` next to `hero.jpg`.
 - `media/og.jpg` (1200×630) is the picture shown when the link is shared. Its URL in `index.html` is absolute.
 - Site videos: 540×960, about 600 kb/s, `-movflags +faststart`. Posters are the episode thumbnail at 540×960.
+
+## Hero reel and player (2026-10-15)
+
+- `media/hero-reel.mp4` is the silent loop at the top: 720×900 (4:5), the shorts' hooks cropped below their title bar (y 470–1820), about 2.5 MB. `hero-reel.jpg` is its poster, and visitors with reduced motion see only the poster. When new big moments come out, rebuild it from the newest shorts.
+- Videos are poster cards. On a mouse, hovering plays a muted preview. A click opens the `#player` dialog: a 9:16 frame with play/pause, seek and mute, prev/next with buttons and ↑/↓, and swipe up/down on phones. The next video starts on its own when one ends.
+- Cards rise in as they scroll into view, once. Motion only where it has a purpose (claudedesignskills `modern-web-design`), and none for reduced motion.

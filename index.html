@@ -21,7 +21,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css?v=mw7e3s8m">
+	<link rel="stylesheet" href="style.css?v=mw8f1h2k">
 </head>
 <body>
 	<a class="skip" href="#features">Skip to content</a>
@@ -52,7 +52,11 @@
 				<a class="btn" data-link="tiktok" data-goatcounter-click="click-tiktok"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg><span>TikTok <small>follow the progress</small></span></a>
 			</div>
 		</div>
-		<div class="hero-shot"><img src="media/hero-540.jpg" srcset="media/hero-540.jpg 540w, media/hero.jpg 1080w" sizes="(max-width: 820px) 60vw, 340px" width="540" height="960" fetchpriority="high" alt="A Helldiver with a row of Terminids behind him and a stratagem beacon"></div>
+		<div class="hero-shot">
+			<!-- a silent loop of the shorts' biggest moments; the poster stays for reduced motion -->
+			<video id="hero-reel" src="media/hero-reel.mp4" poster="media/hero-reel.jpg" width="720" height="900" muted loop playsinline preload="auto" aria-label="Railcannon, Hellbomb and 500kg Bomb explosions in Hellminers"></video>
+			<span class="reel-tag" aria-hidden="true"><i></i>IN-GAME FOOTAGE</span>
+		</div>
 	</header>
 
 	<section id="features">
@@ -118,8 +122,24 @@
 		<p class="fine">Hellminers is an unofficial fan project and is not affiliated with Arrowhead Game Studios, Sony Interactive Entertainment, Mojang Studios or Microsoft. Helldivers is a trademark of Sony Interactive Entertainment. Minecraft is a trademark of Mojang Studios.</p>
 	</footer>
 
+	<dialog id="player" aria-label="Video player">
+		<div class="pl-frame">
+			<video playsinline preload="auto"></video>
+			<button type="button" class="pl-big" aria-label="Play"></button>
+			<div class="pl-bar">
+				<button type="button" class="pl-play" aria-label="Pause"></button>
+				<div class="pl-seek" role="slider" aria-label="Seek" tabindex="0"><div class="pl-fill"></div></div>
+				<span class="pl-time">0:00</span>
+				<button type="button" class="pl-mute" aria-label="Mute"></button>
+			</div>
+		</div>
+		<h3 class="pl-title"></h3>
+		<button type="button" class="pl-nav prev" aria-label="Previous video">&lsaquo;</button>
+		<button type="button" class="pl-nav next" aria-label="Next video">&rsaquo;</button>
+		<button type="button" class="close" aria-label="Close">&times;</button>
+	</dialog>
 	<dialog id="lightbox" aria-label="Enlarged photo"><img alt=""><button type="button" class="close" aria-label="Close">&times;</button></dialog>
-	<script src="site.js?v=mw7e3s8m"></script>
+	<script src="site.js?v=mw8f1h2k"></script>
 	<!-- visitor counter: GoatCounter, no cookies; dashboard at hellminers.goatcounter.com -->
 	<script data-goatcounter="https://hellminers.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
