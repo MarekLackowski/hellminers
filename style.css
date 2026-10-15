@@ -248,3 +248,34 @@ details.note > summary h3 { flex: 1; min-width: 0; }
 	.rise { opacity: 1; transform: none; }
 	.reel-tag i { animation: none; }
 }
+
+/* --- 2026-10-15 b: full-width hero reel on desktop, the rec dot, volume, centred arrows --- */
+.reel-tag { display: none; }
+.reel-dot { position: absolute; right: 14px; top: 14px; z-index: 2; width: 12px; height: 12px; border-radius: 50%; background: #ff3b30;
+	box-shadow: 0 0 0 3px rgba(0, 0, 0, .35), 0 0 12px rgba(255, 59, 48, .8); animation: rec 1.4s infinite; }
+.hero-shot video { aspect-ratio: 16 / 9; }
+@media (min-width: 821px) {
+	/* the reel fills the whole top of the page behind the title; dark on the left so the text reads */
+	header.hero { position: relative; grid-template-columns: minmax(0, 760px); min-height: min(88vh, 820px); align-content: center; z-index: 0; }
+	header.hero .hero-shot { position: absolute; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw); z-index: -1; max-width: none; margin: 0; }
+	header.hero .hero-shot video { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border: 0; }
+	header.hero .hero-shot::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+		background: linear-gradient(90deg, rgba(14, 15, 16, .96) 0%, rgba(14, 15, 16, .85) 38%, rgba(14, 15, 16, .25) 70%, rgba(14, 15, 16, .1) 100%),
+			linear-gradient(transparent 70%, var(--bg)); }
+	header.hero .reel-dot { top: 22px; right: 28px; }
+	body { overflow-x: clip; }
+}
+@media (max-width: 820px) { .hero-shot { max-width: none; } }
+
+.pl-nav { display: grid; place-items: center; padding: 0; font-size: 0; }
+.pl-nav::before { content: ''; width: 14px; height: 14px; border: solid currentColor; border-width: 0 3px 3px 0; }
+.pl-nav.prev::before { transform: translateX(3px) rotate(135deg); }
+.pl-nav.next::before { transform: translateX(-3px) rotate(-45deg); }
+
+.pl-vol { -webkit-appearance: none; appearance: none; flex: none; width: 70px; height: 4px; margin: 0; cursor: pointer; --v: 100%;
+	background: linear-gradient(var(--yellow), var(--yellow)) 0 / var(--v) 100% no-repeat, rgba(255, 255, 255, .3); }
+.pl-vol::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #fff; }
+.pl-vol::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: #fff; }
+.pl-vol:focus-visible { outline: 2px solid var(--yellow); outline-offset: 4px; }
+@media (max-width: 820px) { .pl-vol { display: none; } }
+@media (prefers-reduced-motion: reduce) { .reel-dot { animation: none; } }

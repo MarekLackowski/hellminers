@@ -185,7 +185,13 @@ const toggle = () => (pv.paused ? pv.play() : pv.pause());
 pv.addEventListener('click', toggle);
 pl.querySelector('.pl-big').addEventListener('click', toggle);
 pl.querySelector('.pl-play').addEventListener('click', toggle);
-pl.querySelector('.pl-mute').addEventListener('click', () => { pv.muted = !pv.muted; pl.classList.toggle('muted', pv.muted); });
+// volume: the slider and the mute button, remembered between videos and visits
+const vol = pl.querySelector('.pl-vol');
+try { const v = localStorage.getItem('hm-vol'); if (v !== null) vol.value = v; } catch (e) {}
+const setVol = () => { pv.volume = +vol.value; pv.muted = +vol.value === 0; pl.classList.toggle('muted', pv.muted); vol.style.setProperty('--v', vol.value * 100 + '%'); try { localStorage.setItem('hm-vol', vol.value); } catch (e) {} };
+vol.addEventListener('input', setVol);
+setVol();
+pl.querySelector('.pl-mute').addEventListener('click', () => { if (pv.muted || +vol.value === 0) { vol.value = vol.value > 0 ? vol.value : 0.6; pv.muted = false; pv.volume = +vol.value; vol.style.setProperty('--v', vol.value * 100 + '%'); } else pv.muted = true; pl.classList.toggle('muted', pv.muted); });
 const seekTo = e => { const r = seek.getBoundingClientRect(); pv.currentTime = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * pv.duration; };
 seek.addEventListener('pointerdown', e => { seekTo(e); seek.setPointerCapture(e.pointerId); seek.onpointermove = seekTo; });
 seek.addEventListener('pointerup', () => { seek.onpointermove = null; });

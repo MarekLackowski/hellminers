@@ -53,6 +53,6 @@ About 60% of visitors are on phones. Check every change at 390 px wide before pu
 
 ## Hero reel and player (2026-10-15)
 
-- `media/hero-reel.mp4` is the silent loop at the top: 720×900 (4:5), the shorts' hooks cropped below their title bar (y 470–1820), about 2.5 MB. `hero-reel.jpg` is its poster, and visitors with reduced motion see only the poster. When new big moments come out, rebuild it from the newest shorts.
-- Videos are poster cards. On a mouse, hovering plays a muted preview. A click opens the `#player` dialog: a 9:16 frame with play/pause, seek and mute, prev/next with buttons and ↑/↓, and swipe up/down on phones. The next video starts on its own when one ends.
+- `media/hero-reel.mp4` is the silent loop at the top: 1280×720, 13 moments from the shorts (a 1080×608 band at y 650, clear of the title bar and captions), about 4.4 MB. On a desktop it fills the whole top behind the title, darkened on the left. On a phone it is a 16:9 box under the buttons, with a red rec dot. `hero-reel.jpg` is its poster, and visitors with reduced motion see only the poster. When new big moments come out, rebuild it from the newest shorts.
+- Videos are poster cards. On a mouse, hovering plays a muted preview. A click opens the `#player` dialog: a 9:16 frame with play/pause, seek, mute and a volume slider (remembered), prev/next with buttons and ↑/↓, and swipe up/down on phones. The next video starts on its own when one ends.
 - Cards rise in as they scroll into view, once. Motion only where it has a purpose (claudedesignskills `modern-web-design`), and none for reduced motion.

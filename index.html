@@ -21,7 +21,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css?v=mw8f1h2k">
+	<link rel="stylesheet" href="style.css?v=mw9g4j7p">
 </head>
 <body>
 	<a class="skip" href="#features">Skip to content</a>
@@ -54,8 +54,8 @@
 		</div>
 		<div class="hero-shot">
 			<!-- a silent loop of the shorts' biggest moments; the poster stays for reduced motion -->
-			<video id="hero-reel" src="media/hero-reel.mp4" poster="media/hero-reel.jpg" width="720" height="900" muted loop playsinline preload="auto" aria-label="Railcannon, Hellbomb and 500kg Bomb explosions in Hellminers"></video>
-			<span class="reel-tag" aria-hidden="true"><i></i>IN-GAME FOOTAGE</span>
+			<video id="hero-reel" src="media/hero-reel.mp4" poster="media/hero-reel.jpg" width="1280" height="720" muted loop playsinline preload="auto" aria-label="Railcannon, Hellbomb and 500kg Bomb explosions in Hellminers"></video>
+			<span class="reel-dot" aria-hidden="true"></span>
 		</div>
 	</header>
 
@@ -131,15 +131,16 @@
 				<div class="pl-seek" role="slider" aria-label="Seek" tabindex="0"><div class="pl-fill"></div></div>
 				<span class="pl-time">0:00</span>
 				<button type="button" class="pl-mute" aria-label="Mute"></button>
+				<input type="range" class="pl-vol" min="0" max="1" step="0.05" value="1" aria-label="Volume">
 			</div>
 		</div>
 		<h3 class="pl-title"></h3>
-		<button type="button" class="pl-nav prev" aria-label="Previous video">&lsaquo;</button>
-		<button type="button" class="pl-nav next" aria-label="Next video">&rsaquo;</button>
+		<button type="button" class="pl-nav prev" aria-label="Previous video"></button>
+		<button type="button" class="pl-nav next" aria-label="Next video"></button>
 		<button type="button" class="close" aria-label="Close">&times;</button>
 	</dialog>
 	<dialog id="lightbox" aria-label="Enlarged photo"><img alt=""><button type="button" class="close" aria-label="Close">&times;</button></dialog>
-	<script src="site.js?v=mw8f1h2k"></script>
+	<script src="site.js?v=mw9g4j7p"></script>
 	<!-- visitor counter: GoatCounter, no cookies; dashboard at hellminers.goatcounter.com -->
 	<script data-goatcounter="https://hellminers.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
