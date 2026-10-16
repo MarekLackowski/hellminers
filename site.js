@@ -15,6 +15,8 @@ const SITE = {
 	supporters: { superCitizens: [], others: [] },
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep16', title: 'Guard Dog' },
+		{ id: 'ep15', title: 'Eagle Napalm Airstrike' },
 		{ id: 'ep14', title: 'Orbital Railcannon Strike' },
 		{ id: 'ep13', title: 'Resupply' },
 		{ id: 'ep12', title: 'Shrieker Nest' },
@@ -33,6 +35,35 @@ const SITE = {
 	// newest first. Written the way games and mods write them (see README): sections, one short line per change,
 	// 'Name: what changed', numbers as 'from X to Y', fixes as 'Fixed ...'. No selling, no explaining.
 	patchNotes: [
+		// draft: true: the version being built, collected as we go and not shown; node release.js publishes it.
+		{ draft: true, date: '', title: 'Version 0.4.0', sections: [
+			{ title: 'Added', items: [
+				'Ragdoll',
+				'Prone',
+				'Dive (C)',
+				'Over-the-shoulder third-person camera',
+				'Switch Camera Side key (H)',
+				'Super Destroyer: your own ship, with Super Earth posters and flags',
+				'Galaxy map on the Super Destroyer’s war table',
+				'Super Destroyers in the mission sky, one for each Helldiver',
+			] },
+			{ title: 'Changes', items: [
+				'Explosions, Chargers, Stalkers, Pouncers, Brood Commanders, Bile Titans, Impalers and Devastator punches now ragdoll Helldivers.',
+				'Explosions now throw ragdolled Helldivers away from the blast.',
+				'Helldivers now ragdoll on death.',
+				'Helldivers now end up prone after a ragdoll.',
+				'Prone: recoil reduced to 40%.',
+				'Prone, diving or ragdolled: explosion damage in the outer radius reduced by 90%.',
+				'Devastators now stomp on prone Helldivers.',
+				'Automatons now lose their aim when hit, including by rounds that bounce off their armour.',
+				'Third person: weapons, throws and stratagems now aim at the crosshair.',
+				'Dead Helldivers now stay for 5 seconds.',
+				'The Mission Terminal now takes you up to your Super Destroyer.',
+				'Mission maps are no longer flat or over the sea, and always have at least 3 objectives.',
+				'You can now dive in the middle of a jump.',
+				'Prone: double-tap forward to get up and sprint.',
+			] },
+		] },
 		{ date: '2026-10-12', title: 'Version 0.3.0', sections: [
 			{ title: 'New enemies', items: [
 				'Devastator',
