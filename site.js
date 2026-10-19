@@ -280,7 +280,7 @@ const RANKS = { super_citizen: 'Super Citizen', veteran: 'Veteran', helldiver: '
 const order = Object.keys(RANKS);
 const sup = SITE.supporters.slice().sort((x, y) => order.indexOf(x.tier) - order.indexOf(y.tier));
 $('#supporters').innerHTML = sup.length === 0
-	? '<p class="dim">No supporters yet. Be the first!</p>'
+	? '<span class="dim">Be the first supporter!</span>'
 	: `<ul class="names">${sup.map(p => `<li class="${p.tier === 'super_citizen' ? 'super' : ''}"><img src="media/ranks/${p.tier}.svg" alt="${RANKS[p.tier]}" title="${RANKS[p.tier]}" width="20" height="20">${esc(p.name)}</li>`).join('')}</ul>`;
 
 // the stratagem wall: every icon the mod has, its name on hover
