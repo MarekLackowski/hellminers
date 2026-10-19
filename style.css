@@ -279,3 +279,8 @@ details.note > summary h3 { flex: 1; min-width: 0; }
 .pl-vol:focus-visible { outline: 2px solid var(--yellow); outline-offset: 4px; }
 @media (max-width: 820px) { .pl-vol { display: none; } }
 @media (prefers-reduced-motion: reduce) { .reel-dot { animation: none; } }
+
+/* supporters with rank icons (2026-10-19) */
+.names li { display: inline-flex; align-items: center; gap: 8px; }
+.names li img { width: 20px; height: 20px; flex: none; }
+.names li.super { border-color: var(--yellow); color: var(--yellow); font-family: Anton, sans-serif; text-transform: uppercase; }

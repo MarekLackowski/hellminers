@@ -8,7 +8,7 @@ Everything that changes lives in the `SITE` block at the top of `site.js`:
 
 - `version` and `stage`
 - `links`: YouTube, TikTok, Ko-fi and Patreon. An empty link shows "coming soon".
-- `supporters`: patrons' names, added by hand from Patreon. `superCitizens` (the top tier) get their own yellow row; everyone else goes in `others`.
+- `supporters`: patrons, added by hand as `{ name, tier }` (tier `cadet`, `helldiver`, `veteran`, `super_citizen`). Each gets its rank icon from `media/ranks/<tier>.svg`, highest rank first; Super Citizens in yellow.
 - `videos`: each one is `media/videos/<id>.mp4` with `<id>.jpg` as its poster.
 - `patchNotes`: newest first. Each entry has `sections` (`New stratagems`, `Added`, `Changes`, `Fixes`), each a list of lines.
 

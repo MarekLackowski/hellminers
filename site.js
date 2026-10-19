@@ -11,8 +11,11 @@ const SITE = {
 		patreon: 'https://www.patreon.com/cw/GoDuuu',
 		beta: 'https://www.patreon.com/posts/hellminers-beta-172140879', // the free beta post
 	},
-	// Patreon supporters, added by hand: superCitizens get their own row at the top of the list
-	supporters: { superCitizens: [], others: [] },
+	// Patreon supporters, added by hand: { name, tier } with tier cadet / helldiver / veteran / super_citizen; each name
+	// gets its rank icon (media/ranks/<tier>.svg), Super Citizens first and in yellow
+	supporters: [
+		{ name: 'Jeffrey Haraway', tier: 'cadet' },
+	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
 		{ id: 'ep18', title: 'Portable Hellbomb' },
@@ -272,12 +275,13 @@ $('#notes').innerHTML = SITE.patchNotes.filter(n => !n.draft).map((n, i) => `
 		${n.sections.map(s => `<h4>${esc(s.title)}</h4><ul>${s.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul>`).join('')}
 	</details>`).join('');
 
-// supporters: Super Citizens first, then everyone else; an empty list invites the first one
-const sup = SITE.supporters;
-$('#supporters').innerHTML = sup.superCitizens.length + sup.others.length === 0
+// supporters: highest rank first, each with its rank icon; an empty list invites the first one
+const RANKS = { super_citizen: 'Super Citizen', veteran: 'Veteran', helldiver: 'Helldiver', cadet: 'Cadet' };
+const order = Object.keys(RANKS);
+const sup = SITE.supporters.slice().sort((x, y) => order.indexOf(x.tier) - order.indexOf(y.tier));
+$('#supporters').innerHTML = sup.length === 0
 	? '<p class="dim">No supporters yet. Be the first!</p>'
-	: (sup.superCitizens.length ? `<h3>Super Citizens</h3><ul class="names super">${sup.superCitizens.map(n => `<li>${esc(n)}</li>`).join('')}</ul>` : '') +
-	  (sup.others.length ? `<h3>Helldivers</h3><ul class="names">${sup.others.map(n => `<li>${esc(n)}</li>`).join('')}</ul>` : '');
+	: `<ul class="names">${sup.map(p => `<li class="${p.tier === 'super_citizen' ? 'super' : ''}"><img src="media/ranks/${p.tier}.svg" alt="${RANKS[p.tier]}" title="${RANKS[p.tier]}" width="20" height="20">${esc(p.name)}</li>`).join('')}</ul>`;
 
 // the stratagem wall: every icon the mod has, its name on hover
 const ICONS = ['eagle_airstrike', 'orbital_precision_strike', 'resupply', 'machine_gun_sentry', 'expendable_anti_tank',
