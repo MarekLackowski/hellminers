@@ -15,6 +15,8 @@ const SITE = {
 	supporters: { superCitizens: [], others: [] },
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep18', title: 'Portable Hellbomb' },
+		{ id: 'ep17', title: 'Orbital Precision Strike' },
 		{ id: 'ep16', title: 'Guard Dog' },
 		{ id: 'ep15', title: 'Eagle Napalm Airstrike' },
 		{ id: 'ep14', title: 'Orbital Railcannon Strike' },
@@ -43,7 +45,7 @@ const SITE = {
 				'Dive (C)',
 				'Over-the-shoulder third-person camera',
 				'Switch Camera Side key (H)',
-				'Super Destroyer: your own ship, with Super Earth posters and flags',
+				'Super Destroyer: your own ship',
 				'Galaxy map on the Super Destroyer’s war table',
 				'Super Destroyers in the mission sky, one for each Helldiver',
 			] },
