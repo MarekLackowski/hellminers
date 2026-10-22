@@ -18,6 +18,7 @@ const SITE = {
 	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep20', title: 'Jump Pack' },
 		{ id: 'ep19', title: 'Beta v0.3.0 – how to play' },
 		{ id: 'ep18', title: 'Portable Hellbomb' },
 		{ id: 'ep17', title: 'Orbital Precision Strike' },
