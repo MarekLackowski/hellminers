@@ -18,6 +18,7 @@ const SITE = {
 	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep24', title: 'Orbital Napalm Barrage' },
 		{ id: 'ep23', title: 'Liberty Day special' },
 		{ id: 'ep22', title: 'Warp Pack' },
 		{ id: 'ep21', title: 'Orbital Laser' },
