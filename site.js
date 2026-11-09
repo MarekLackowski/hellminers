@@ -18,6 +18,7 @@ const SITE = {
 	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep30', title: 'Automatons, part 1' },
 		{ id: 'ep29', title: 'SEAF Artillery' },
 		{ id: 'ep28', title: 'LiDAR Tower' },
 		{ id: 'ep27', title: 'Supply Pack' },
