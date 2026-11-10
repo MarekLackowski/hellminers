@@ -100,9 +100,20 @@ h2.faction img { width: 40px; height: 40px; flex: none; }
 .zoom img { display: block; width: 100%; height: auto; transition: transform .15s; }
 .zoom:hover img, .zoom:focus-visible img { transform: scale(1.03); }
 .zoom:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
-#lightbox { padding: 0; border: 1px solid var(--yellow); background: var(--panel); max-width: min(92vw, 1000px); max-height: 92vh; }
+/* the dialog takes the photo's size; the photo stays 2 px (the border) inside the screen, so no scrollbar (Marek, 2026-11-10) */
+#lightbox { padding: 0; border: 1px solid var(--yellow); background: var(--panel); max-width: none; max-height: none; overflow: hidden; }
 #lightbox::backdrop { background: rgba(0, 0, 0, .8); }
-#lightbox img { display: block; width: 100%; height: auto; max-height: 92vh; object-fit: contain; }
+#lightbox img { display: block; width: auto; height: auto; max-width: calc(min(92vw, 1000px) - 2px); max-height: calc(92dvh - 2px); object-fit: contain; }
+.lb-nav { position: absolute; top: 50%; width: 48px; height: 48px; margin-top: -24px; display: grid; place-items: center; padding: 0; border: 2px solid var(--yellow);
+	background: rgba(0, 0, 0, .6); color: var(--yellow); cursor: pointer; }
+.lb-nav::before { content: ''; width: 14px; height: 14px; border: solid currentColor; border-width: 0 3px 3px 0; }
+.lb-nav.prev { left: 8px; }
+.lb-nav.prev::before { transform: translateX(3px) rotate(135deg); }
+.lb-nav.next { right: 8px; }
+.lb-nav.next::before { transform: translateX(-3px) rotate(-45deg); }
+.lb-nav:hover, .lb-nav:focus-visible { background: var(--yellow); color: #111; }
+.lb-cap { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 8px 12px; background: rgba(0, 0, 0, .65); color: var(--yellow);
+	font: 600 16px Barlow, sans-serif; text-align: center; white-space: pre; pointer-events: none; }
 #lightbox .close { position: absolute; top: 6px; right: 6px; width: 40px; height: 40px; border: 0; background: rgba(0, 0, 0, .6); color: #fff; font-size: 28px; line-height: 1; cursor: pointer; }
 
 /* --- phones first (about 60% of visitors) and a checklist pass: tap targets, focus, motion, layout shift --- */
@@ -150,7 +161,7 @@ details.note > summary h3 { margin: 0; font-size: 24px; }
 	.videos { margin-right: -16px; padding-right: 16px; scroll-padding-left: 0; }
 	.note { padding: 14px 16px; }
 	details.note > summary h3 { font-size: 21px; }
-	#lightbox { max-width: 100vw; max-height: 100dvh; }
+	#lightbox img { max-width: calc(100vw - 2px); max-height: calc(100dvh - 2px); }
 	#lightbox .close { width: 48px; height: 48px; }
 	footer { padding-bottom: max(32px, env(safe-area-inset-bottom)); }
 }

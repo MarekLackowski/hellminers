@@ -310,12 +310,32 @@ const ICONS = ['eagle_airstrike', 'orbital_precision_strike', 'resupply', 'machi
 $('#icons').innerHTML = ICONS.map(i => `<img src="media/icons/${i}.png" width="64" height="64" alt="${i.replace(/_/g, ' ')}" title="${i.replace(/_/g, ' ')}" loading="lazy">`).join('');
 $('#icon-count').textContent = ICONS.length;
 
-// the bug photos: a click opens the full-size one; a click anywhere, Esc or the cross closes it
+// the enemy photos: a click opens the full-size one; the side arrows, the arrow keys or a swipe go through all of them in
+// order, as the video player does (Marek, 2026-11-10); a click anywhere else, Esc or the cross closes it
 const box = document.getElementById('lightbox');
 if (box) {
-	const big = box.querySelector('img');
-	for (const b of document.querySelectorAll('.zoom')) {
-		b.addEventListener('click', () => { big.src = b.dataset.big; big.alt = b.querySelector('img').alt; box.showModal(); });
-	}
-	box.addEventListener('click', () => box.close());
+	const big = box.querySelector('img'), cap = box.querySelector('.lb-cap');
+	const zooms = [...document.querySelectorAll('.zoom')];
+	let cur = 0, swiped = false, x0 = null;
+	const show = i => {
+		cur = (i + zooms.length) % zooms.length;
+		const b = zooms[cur];
+		big.src = b.dataset.big; big.alt = b.querySelector('img').alt;
+		cap.textContent = `${big.alt}  ${cur + 1} / ${zooms.length}`;
+		new Image().src = zooms[(cur + 1) % zooms.length].dataset.big; // the next one ready
+	};
+	zooms.forEach((b, i) => b.addEventListener('click', () => { show(i); box.showModal(); }));
+	box.querySelector('.lb-nav.prev').addEventListener('click', e => { e.stopPropagation(); show(cur - 1); });
+	box.querySelector('.lb-nav.next').addEventListener('click', e => { e.stopPropagation(); show(cur + 1); });
+	box.addEventListener('click', () => { if (swiped) swiped = false; else box.close(); });
+	box.addEventListener('keydown', e => {
+		if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); show(cur + 1); }
+		if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); show(cur - 1); }
+	});
+	box.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+	box.addEventListener('touchend', e => {
+		if (x0 === null) return;
+		const dx = e.changedTouches[0].clientX - x0; x0 = null;
+		if (Math.abs(dx) > 50) { swiped = true; show(cur + (dx < 0 ? 1 : -1)); }
+	});
 }
