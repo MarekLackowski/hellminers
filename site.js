@@ -18,6 +18,7 @@ const SITE = {
 	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep33', title: 'Eagle Cluster Bomb' },
 		{ id: 'ep32', title: 'Tesla Tower' },
 		{ id: 'ep31', title: 'Flame Sentry' },
 		{ id: 'ep30', title: 'Automatons, part 1' },
