@@ -18,6 +18,8 @@ const SITE = {
 	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep37', title: 'Recoilless Rifle (coming in 0.4.0)' },
+		{ id: 'ep36', title: 'Orbital 380mm HE Barrage' },
 		{ id: 'ep35', title: 'Shield Generator Relay' },
 		{ id: 'ep34', title: 'Ragdolls' },
 		{ id: 'ep33', title: 'Eagle Cluster Bomb' },
