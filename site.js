@@ -14,6 +14,7 @@ const SITE = {
 	// Patreon supporters, added by hand: { name, tier } with tier cadet / helldiver / veteran / super_citizen; each name
 	// gets its rank icon (media/ranks/<tier>.svg), Super Citizens first and in yellow
 	supporters: [
+		{ name: 'Don Xaviv', tier: 'cadet' },
 	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
