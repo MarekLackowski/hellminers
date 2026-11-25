@@ -11,10 +11,10 @@ const SITE = {
 		patreon: 'https://www.patreon.com/cw/GoDuuu',
 		beta: 'https://www.patreon.com/posts/hellminers-beta-172140879', // the free beta post
 	},
-	// Patreon supporters, added by hand: { name, tier } with tier cadet / helldiver / veteran / super_citizen; each name
+	// Patreon supporters, added by hand: { name, tier, avatar? (media/patrons/, 64 px) } with tier cadet / helldiver / veteran / super_citizen; each name
 	// gets its rank icon (media/ranks/<tier>.svg), Super Citizens first and in yellow
 	supporters: [
-		{ name: 'Don Xaviv', tier: 'cadet' },
+		{ name: 'Don Xaviv', tier: 'cadet', avatar: 'don_xaviv.jpg' },
 	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
@@ -300,7 +300,7 @@ const order = Object.keys(RANKS);
 const sup = SITE.supporters.slice().sort((x, y) => order.indexOf(x.tier) - order.indexOf(y.tier));
 $('#supporters').innerHTML = sup.length === 0
 	? '<span class="dim">Your name could be here. Back Hellminers on Patreon and help decide what comes next.</span>'
-	: `<ul class="names">${sup.map(p => `<li class="${p.tier === 'super_citizen' ? 'super' : ''}"><img src="media/ranks/${p.tier}.svg" alt="${RANKS[p.tier]}" title="${RANKS[p.tier]}" width="20" height="20">${esc(p.name)}</li>`).join('')}</ul>`;
+	: `<ul class="names">${sup.map(p => `<li class="${p.tier === 'super_citizen' ? 'super' : ''}"><img src="media/ranks/${p.tier}.svg" alt="${RANKS[p.tier]}" title="${RANKS[p.tier]}" width="20" height="20">${p.avatar ? `<img class="avatar" src="media/patrons/${p.avatar}" alt="" width="24" height="24" loading="lazy">` : ''}${esc(p.name)}</li>`).join('')}</ul>`;
 
 // the stratagem wall: every icon the mod has, its name on hover
 const ICONS = ['eagle_airstrike', 'orbital_precision_strike', 'resupply', 'machine_gun_sentry', 'expendable_anti_tank',

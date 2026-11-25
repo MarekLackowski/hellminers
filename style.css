@@ -307,3 +307,4 @@ details.note > summary h3 { flex: 1; min-width: 0; }
 .backers-join { font: 600 15px Barlow, sans-serif; color: var(--yellow); text-decoration: none; white-space: nowrap; }
 .backers-join:hover { text-decoration: underline; }
 @media (max-width: 820px) { .backers-in { padding: 14px 16px; gap: 10px; } .backers-title { font-size: 19px; width: 100%; } }
+.names li img.avatar { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--yellow); object-fit: cover; }
