@@ -15,6 +15,7 @@ const SITE = {
 	// gets its rank icon (media/ranks/<tier>.svg), Super Citizens first and in yellow
 	supporters: [
 		{ name: 'Don Xaviv', tier: 'cadet', avatar: 'don_xaviv.jpg' },
+		{ name: 'Jeffrey Haraway', tier: 'cadet', avatar: 'jeffrey_haraway.jpg' },
 	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
