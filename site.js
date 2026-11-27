@@ -18,6 +18,7 @@ const SITE = {
 	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep39', title: 'Automatons, part 2' },
 		{ id: 'ep38', title: 'Automatons, part 1' },
 		{ id: 'ep37', title: 'Recoilless Rifle (coming in 0.4.0)' },
 		{ id: 'ep36', title: 'Orbital 380mm HE Barrage' },
