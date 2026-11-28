@@ -19,6 +19,7 @@ const SITE = {
 	],
 	// newest first; each video is media/videos/<id>.mp4 with <id>.jpg as its poster
 	videos: [
+		{ id: 'ep40', title: 'Automatons, part 3' },
 		{ id: 'ep39', title: 'Automatons, part 2' },
 		{ id: 'ep38', title: 'Automatons, part 1' },
 		{ id: 'ep37', title: 'Recoilless Rifle' },
