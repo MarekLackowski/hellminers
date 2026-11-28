@@ -21,7 +21,7 @@ const SITE = {
 	videos: [
 		{ id: 'ep39', title: 'Automatons, part 2' },
 		{ id: 'ep38', title: 'Automatons, part 1' },
-		{ id: 'ep37', title: 'Recoilless Rifle (coming in 0.4.0)' },
+		{ id: 'ep37', title: 'Recoilless Rifle' },
 		{ id: 'ep36', title: 'Orbital 380mm HE Barrage' },
 		{ id: 'ep35', title: 'Shield Generator Relay' },
 		{ id: 'ep34', title: 'Ragdolls' },
